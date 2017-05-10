@@ -1,13 +1,17 @@
 import App from 'app/components/App';
-import { Test } from 'app/components/modules';
+import { Dashboard, ItemDetails } from 'app/components/modules';
 
 export default [
     {
         component: App,
+        path: '/',
+        indexRoute: {
+            component: Dashboard,
+        },
         childRoutes: [
             {
-                component: Test,
-                path: '/',
+                component: ItemDetails,
+                path: '/:type/:id',
             },
         ],
     },

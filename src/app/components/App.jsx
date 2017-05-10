@@ -1,9 +1,14 @@
 import React from 'react';
 import PT from 'prop-types';
+import { Wrapper } from 'common';
+import { Header } from 'modules';
 
 const App = ({ children }) => (
     <main>
-        {children}
+        <Header />
+        <Wrapper>
+            {children}
+        </Wrapper>
     </main>
 );
 
