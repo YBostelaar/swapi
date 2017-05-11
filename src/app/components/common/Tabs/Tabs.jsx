@@ -28,10 +28,10 @@ const tabs = [
 ];
 
 
-const Tabs = ({ onClick }) => (
-    <div>
+const Tabs = ({ onClick, active }) => (
+    <div styleName="tabs">
         {tabs.map(tab =>
-            <button onClick={() => onClick(tab.type)} key={tab.name}>{tab.name}</button>,
+            <button onClick={() => onClick(tab.type)} styleName={active === tab.type ? 'active' : null} key={tab.name}>{tab.name}</button>,
         )}
     </div>
 );

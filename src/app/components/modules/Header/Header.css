@@ -1,0 +1,16 @@
+@import 'variables.css';
+
+.header {
+    background-color: var(--c-primary);
+    height: 60px;
+    box-shadow: 0 2px 8px 0 rgba(127,140,141,0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    & a {
+        height: 100%;
+        display: block;
+    }
+}

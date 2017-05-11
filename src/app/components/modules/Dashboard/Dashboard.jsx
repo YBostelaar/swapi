@@ -3,8 +3,10 @@ import PT from 'prop-types';
 import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
 import _ from 'lodash/fp';
-import { getItemList, getItemType } from 'ducks/dashboard';
-import { ItemCard, Tabs, Pagination } from 'common';
+import Spinner from '@labela/spinner';
+import '@labela/spinner/dist/style.css';
+import { getItemList, getItemType, getSearchQuery } from 'ducks/dashboard';
+import { ItemCard, Tabs, Pagination, Input, Wrapper } from 'common';
 
 import styles from './Dashboard.css';
 
@@ -24,27 +26,43 @@ class Dashboard extends React.Component {
         this.props.dispatch(getItemType(type));
     }
 
+    handleSearchDebounced = _.debounce(300, () => this.props.dispatch(getItemList()));
+
+    handleSearch = (searchQuery) => {
+        this.props.dispatch(getSearchQuery(searchQuery));
+        this.handleSearchDebounced();
+    }
+
     render() {
         const { data, loading } = this.props.dashboard;
 
         return (
             <div styleName="dashboard">
-                <Tabs onClick={this.activateTab} />
-                {loading && (
-                    <p>loading...</p>
-                )}
-                {!loading && data && (
-                    data.map(item =>
-                        <ItemCard key={item.name} item={item} />,
-                    )
-                )}
-                <Pagination
-                    previousLabel="&laquo;"
-                    nextLabel="&raquo;"
-                    pageCount={this.pageCount()}
-                    activeClassname="active"
-                    onPageChange={this.onPageChange}
-                />
+                <Tabs onClick={this.activateTab} active={this.props.dashboard.item_type} />
+                <Wrapper>
+                    <div styleName="search">
+                        <Input labelText="Search:" onChange={this.handleSearch} value={this.props.dashboard.search_query} />
+                    </div>
+                    <div styleName="list">
+                        {loading && (
+                            <div styleName="loader">
+                                <Spinner css={styles} />
+                            </div>
+                        )}
+                        {!loading && data && (
+                            data.map(item =>
+                                <ItemCard key={item.name} item={item} />,
+                            )
+                        )}
+                    </div>
+                    <Pagination
+                        previousLabel="&laquo;"
+                        nextLabel="&raquo;"
+                        pageCount={this.pageCount()}
+                        activeClassname="active"
+                        onPageChange={this.onPageChange}
+                    />
+                </Wrapper>
             </div>
         );
     }

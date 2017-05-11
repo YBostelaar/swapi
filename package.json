@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@labela/paginate": "^0.2.0",
+    "@labela/spinner": "0.0.6",
     "babel-polyfill": "^6.23.0",
     "compression": "^1.6.2",
     "express": "^4.15.2",

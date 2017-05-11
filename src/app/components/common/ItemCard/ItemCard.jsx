@@ -6,7 +6,7 @@ import cssModules from 'react-css-modules';
 import styles from './ItemCard.css';
 
 const ItemCard = ({ item }) => (
-    <Link to={`/${item.type}/${item.id}`} styleName="card">
+    <Link to={`/${item.type}/${item.id}`} styleName="card" style={{ borderBottom: `3px solid ${item.eye_color}`}}>
         <ul>
             <li>{item.name}</li>
         </ul>

@@ -1,7 +1,10 @@
 :root {
     /* COLORS */
-    --c-primary: #2ecc71;
-    --c-text: #2F3F42;
+    --c-primary: #FFFFFF;
+    --c-secondary: #E7250A;
+    --c-background: #F4F8F9;
+    --c-text: #151515;
+    --c-hover: #D7C078;
 
     /* FONTS */
     --f-futura: Futura-Medium, Futura;

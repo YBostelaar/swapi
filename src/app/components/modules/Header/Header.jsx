@@ -2,14 +2,13 @@ import React from 'react';
 import PT from 'prop-types';
 import { Link } from 'react-router';
 import cssModules from 'react-css-modules';
+import Logo from 'vectors/starwars.svg';
 
 import styles from './Header.css';
 
 const Header = () => (
-    <header>
-        <Link to="/">
-            Dashboard
-        </Link>
+    <header styleName="header">
+        <Link to="/"><Logo /></Link>
     </header>
 );
 

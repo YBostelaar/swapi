@@ -4,10 +4,12 @@ const ITEM_LIST_PENDING = 'ITEM_LIST_PENDING';
 const ITEM_LIST_SUCCESS = 'ITEM_LIST_SUCCESS';
 const ITEM_LIST_FAILED = 'ITEM_LIST_FAILED';
 const ITEM_TYPE_SUCCESS = 'ITEM_TYPE_SUCCESS';
+const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 
 const initialState = {
     data: null,
     item_type: 'people',
+    search_query: '',
     error: false,
     loading: false,
 };
@@ -38,6 +40,11 @@ export default (state = initialState, { type, payload }) => {
             ...state,
             item_type: payload,
         };
+    case SEARCH_SUCCESS:
+        return {
+            ...state,
+            search_query: payload,
+        };
     default:
         return state;
     }
@@ -49,7 +56,7 @@ export const getItemListFailed = createAction('ITEM_LIST_FAILED');
 export const getItemList = page => (dispatch, getState, api) => {
     dispatch({ type: ITEM_LIST_PENDING });
 
-    api.get({ path: `${getState().dashboard.item_type}`, query: { page } }).then((res) => {
+    api.get({ path: `${getState().dashboard.item_type}`, query: { page, search: getState().dashboard.search_query } }).then((res) => {
         const mappedRes = {
             ...res,
             results: res.results.map((item) => {
@@ -78,4 +85,10 @@ export const getItemTypeSuccess = createAction('ITEM_TYPE_SUCCESS');
 export const getItemType = type => (dispatch) => {
     dispatch(getItemTypeSuccess(type));
     dispatch(getItemList());
+};
+
+export const getSearchQuerySuccess = createAction('SEARCH_SUCCESS');
+
+export const getSearchQuery = searchQuery => (dispatch) => {
+    dispatch(getSearchQuerySuccess(searchQuery));
 };

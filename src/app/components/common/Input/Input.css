@@ -1,0 +1,16 @@
+@import 'variables.css';
+
+label {
+    margin-right: 20px;
+}
+
+input {
+    -webkit-appearance: none;
+    padding: 9px 12px;
+    background: var(--c-primary);
+    border: 1px solid #E0E3E0;
+    box-shadow: inset 0 1px 1px 0 rgba(0,0,0,0.02);
+    border-radius: 2px;
+    font-size: 15px;
+    min-width: 250px;
+}

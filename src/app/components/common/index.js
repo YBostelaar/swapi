@@ -1,3 +1,4 @@
+export Input from './Input/Input';
 export ItemCard from './ItemCard/ItemCard';
 export Pagination from './Pagination/Pagination';
 export Tabs from './Tabs/Tabs';
